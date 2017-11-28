@@ -1,17 +1,23 @@
 # Arduino ODBII scan tool simulator.
 
-Transmits ODBII PIDs with vehicle sensor information upon request, using the
-ELM327 protocol.
+Transmits real-time automotive sensor information to a client smartphone
+or tablet running an [ODBII](https://en.wikipedia.org/wiki/OBD-II) monitoring 
+app.
+
+The most common application is to provide real-time sensor information
+for classic vehicles that either do not have an ECU or a sensor bus with
+an OBDII connector. 
 
 The common setup will be a set of automotive sensors connected to the Arduino
 microcontroller (MCU) running as the simulator. Equipped with a Bluetooth
 module, sensor information will be sent to a client when requested. The client
-will generally be a smart phone running an OBDII app, such as Torque.
+will generally be a smartphone running an OBDII app, such as 
+[Torque](https://torque-bhp.com/).
 
 This program implements the aqcuisition and calculation of sensor values, and
 transmission of those to the client using OBDII 
 [PID structures](https://en.wikipedia.org/wiki/OBD-II_PIDs) over the ELM327
-protocol.
+protocol upon request.
 
 
 ```
