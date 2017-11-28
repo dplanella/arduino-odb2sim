@@ -35,3 +35,11 @@ protocol upon request.
                         simulator)
 
 ```
+
+## Hardware
+
+Other than the microcontroller, the only requirement is the addition of a Bluetooth serial communication module. The HC-05 module, which generally comes mounted on a ZS-040 breakout board, is a good choice for instance.
+
+This software was tested with an Arduino Nano and an HC-05 Bluetooth module as shown:
+
+![Arduino nano with HC-05 Bluetooth module](https://i.imgur.com/QmIq1TZ.png)
