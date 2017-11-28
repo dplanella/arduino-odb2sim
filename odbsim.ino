@@ -154,22 +154,6 @@ void loop() {
     }
   }
 
-  //  Alternative implementation: read a full command on each loop
-  //
-  //  String OBDRequest = "";
-  //
-  //  // Read characters from the serial port while available
-  //  while (BtSerial.available()) {
-  //      delay(3); //wait for buffer to fill up
-  //      if (BtSerial.available() > 0) { //Serial port ready?
-  //          char c = BtSerial.read(); //write character to c
-  //          OBDRequest += c; //write c to request variable
-  //      }
-  //      OBDRequest.trim(); //get rid of line feeds
-  //  }
-  //
-  //  processRequest(OBDRequest);
-
 }
 
 // Process the requests (commands) sent from the client app
@@ -354,7 +338,7 @@ void processRequest(String request) {
 
   replyPrompt();
 
-  request = ""; // Clear the request buffer once processed
+  request = "";  // Clear the request buffer once processed
 }
 
 // Sends a reply to an OBD2 request
@@ -413,21 +397,17 @@ void replyOBDResponse(const String response) {
 
 // Updates the sensor values
 void updateSensorValues() {
+  // Update RPM every n sample counts:
+  // - increase n for better RPM resolution,
+  // - decrease for faster update
+  const int RPM_SAMPLE_COUNT = 30;
 
   // Sensor data sent as mode 1 PIDs
   if (rpm_pulse_count >= 30) {
-    // Update RPM every n counts, increase this for better RPM resolution,
-    // decrease for faster update
-    //rpm = (30 * 1000 * 1000 / (micros() - time_old)) * rpm_pulse_count;
-    //time_old = micros();
 
-    rpm = (30 * 1000 / (millis() - time_old)) * rpm_pulse_count;
-    time_old = millis();
-
-    /*
     rpm = (30UL * 1000UL * 1000UL / (micros() - time_old)) * rpm_pulse_count;
     time_old = micros();
-    */
+
     rpm_pulse_count = 0;
     eng_rpm = rpm;
   }
